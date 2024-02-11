@@ -1,53 +1,46 @@
 package com.dsa.topinterview150.linkedlist;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Cycle {
+
+    /*
+    This problem can be solved in 2 ways:
+       1) Use a set to store nodes that have been traversed and check if it's existing.
+       2) Use fast and slow (Two Pointer) method and eventually if there's a cycle then both nodes will be the same.
+     */
+
     public static void main(String[] args) {
         ListNode node = createData();
-        System.out.println(hasCycle2(node));
+        System.out.println(hasCycle(node));
     }
 
     static boolean hasCycle(ListNode head) {
-        boolean hasCycle = false;
-        ListNode nextNode = head;
-        List <ListNode> collect = new ArrayList<>();
-        while(nextNode.next != null) {
-            collect.add(nextNode);
-            nextNode = nextNode.next;
-            if(collect.contains(nextNode)){
-                return true;
-            }
-        }
-
-        return hasCycle;
-    }
-
-    static boolean hasCycle2(ListNode head) {
-        boolean hasCycle = false;
         ListNode slow = head;
         ListNode fast = head;
 
         while(fast!= null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast)
+            if(slow == fast){
+                System.out.println(slow.val);
+                System.out.println(fast.val);
                 return true;
+            }
         }
 
         return false;
     }
+
+
     static ListNode createData() {
-        ListNode node = new ListNode(3);
-        ListNode node2 = new ListNode(2);
-        ListNode node0 = new ListNode(0);
-        ListNode nodeLast = new ListNode(-4);
-        node.next = node2;
-        node2.next = node0;
-        node0.next = nodeLast;
-        nodeLast.next = node2;
-        return node;
+        LinkedList ll = new LinkedList();
+        ll.insertFirst(-4);
+        ll.insertFirst(0);
+        ll.insertFirst(2);
+        ll.insertFirst(3); 
+
+        return ll.getHead();
     }
 
 }
