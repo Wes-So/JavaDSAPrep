@@ -3,10 +3,13 @@ package com.dsa.topinterview150.linkedlist;
 public class LinkedListUtils {
 
     public static void displayNodes(ListNode head) {
+
         while(head != null) {
-            System.out.println(head.val);
+            System.out.print(head.val + "->");
             head = head.next;
         }
+
+        System.out.println("END");
     }
 
     public static ListNode createData(int[] arr) {

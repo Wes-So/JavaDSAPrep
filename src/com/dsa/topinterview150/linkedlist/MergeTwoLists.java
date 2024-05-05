@@ -4,78 +4,87 @@ public class MergeTwoLists {
     public static void main(String[] args) {
         int arr[] = {1,2,4};
         int arr2[] = {1,3,4};
-        ListNode node1 = createData(arr);
-        ListNode node2 = createData(arr2);
-        ListNode head = mergeTwoLists(null,new ListNode(0));
 
-        displayNodes(head);
+        LinkedList ll = new LinkedList();
+        ll.insertFirst(4);
+        ll.insertFirst(2);
+        ll.insertFirst(1);
+        ll.display();
+
+        LinkedList ll2 = new LinkedList();
+//        ll2.insertFirst(4);
+        ll2.insertFirst(3);
+        ll2.insertFirst(1);
+        ll2.display();
+
+        ListNode node = mergeTwoLists(ll.getHead(), ll2.getHead());
+        LinkedListUtils.displayNodes(node);
+
     }
 
-    static void displayNodes(ListNode head) {
-         while(head != null) {
-            System.out.println(head.val);
-            head = head.next;
-        }
-    }
+
 
     static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-                ListNode newNode = null;
-                ListNode head = null;
 
-                while(list1 != null && list2 != null) {
-                    if(list1.val <= list2.val){
-                        ListNode temp = new ListNode(list1.val);
-                        if(newNode == null) {
-                            newNode = temp;
-                            head = temp;
-                        } else {
-                            newNode.next = temp;
-                        }
-                        list1 = list1.next;
-                    } else{
-                        ListNode temp = new ListNode(list2.val);
-                        if(newNode == null) {
-                            newNode = temp;
-                            head = temp;
-                        } else {
-                            newNode.next = temp;
-                        }
+                /*
+                    Proposed steps:
+                        Create new ListNode
+                        Loop around node 1 and node 2 if they're both not null:
+                            if list1.val == node2.val:
+                               add list1 and node2 to new ll
+                               list1 = list1.next
+                               node2 = node2.next
+
+                            if list1.val > node2.val:
+                               add node2.val to new ll
+                               node2 = node2.next
+
+                            if list1 < node2.val:
+                                add list1 to ndw ll
+                                list1 = list1.next
+                 */
+
+                ListNode head = new ListNode(0);
+                ListNode temp = head;
+
+
+                while(list1 != null || list2 != null) {
+
+                    if(list1 == null) {
+                        temp.next = new ListNode(list2.val);
+                        temp = temp.next;
                         list2 = list2.next;
+                        continue;
                     }
-                    if(newNode.next!= null)
-                        newNode = newNode.next;
-                }
 
+                    if(list2 == null) {
+                        temp.next = new ListNode(list1.val);
+                        temp = temp.next;
+                        list1 = list1.next;
+                        continue;
+                    }
 
+                    System.out.println(list1.val);
+                    System.out.println(list2.val);
 
-                while(list1 != null) {
-                    ListNode temp = new ListNode(list1.val);
-                    if(newNode == null) {
-                        newNode = temp;
-                        head = temp;
+                    if(list1.val == list2.val){
+                        temp.next = new ListNode(list1.val);
+                        temp = temp.next;
+                        temp.next = new ListNode(list2.val);
+                        list1 = list1.next;
+                        list2 = list2.next;
+                    } else if(list1.val > list2.val) {
+                        temp.next = new ListNode(list2.val);
+                        list2 = list2.next;
                     } else {
-                        newNode.next = temp;
-                        newNode = newNode.next;
+                        temp.next = new ListNode(list1.val);
+                        list1 = list1.next;
                     }
 
-                    list1 = list1.next;
-
+                    temp = temp.next;
                 }
 
-                while(list2 != null) {
-                    ListNode temp = new ListNode(list2.val);
-                    if(newNode == null) {
-                        newNode = temp;
-                        head = temp;
-                    } else {
-                        newNode.next = temp;
-                        newNode = newNode.next;
-                    }
-
-                    list2 = list2.next;
-                }
-
-                return head;
+                return head.next;
     }
 
 
