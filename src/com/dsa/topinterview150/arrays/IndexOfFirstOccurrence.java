@@ -4,17 +4,17 @@ public class IndexOfFirstOccurrence {
     public static void main(String[] args) {
         String haystack = "mississippi";
         String needle = "issip";
-        System.out.println(strStr(haystack,needle));
+        System.out.println(strStr2(haystack,needle));
 
     }
 
     public static int strStr(String haystack, String needle) {
         int idx = -1;
-        int right = 0;
+        int right = -1;
         String temp = "";
 
         for (int left = 0; left < haystack.length(); left++) {
-            right = left+1;
+            right = left;
             while(right < haystack.length()) {
                 temp = haystack.substring(left, right+1);
 
@@ -28,5 +28,19 @@ public class IndexOfFirstOccurrence {
             }
         }
         return idx;
+    }
+
+
+    public static int strStr2(String haystack, String needle) {
+        int i = 0;
+        int j = needle.length();
+        while(j<=haystack.length()){
+            if(needle.equals(haystack.substring(i,j))){
+                return i;
+            }
+            i++;
+            j++;
+        }
+        return -1;
     }
 }
