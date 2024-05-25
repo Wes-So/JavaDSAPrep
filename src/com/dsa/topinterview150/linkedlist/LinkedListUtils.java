@@ -2,14 +2,23 @@ package com.dsa.topinterview150.linkedlist;
 
 public class LinkedListUtils {
 
-    public static void displayNodes(ListNode head) {
+//    public static void displayNodes(ListNode head) {
+//
+//        while(head != null) {
+//            System.out.print(head.val + "->");
+//            head = head.next;
+//        }
+//
+//        System.out.println("END");
+//    }
 
-        while(head != null) {
-            System.out.print(head.val + "->");
-            head = head.next;
+    public static void displayNodes(ListNode root){
+        if(root == null){
+            System.out.println("END");
+            return;
         }
-
-        System.out.println("END");
+        System.out.print(root.val + "->");
+        displayNodes(root.next);
     }
 
     public static ListNode createData(int[] arr) {

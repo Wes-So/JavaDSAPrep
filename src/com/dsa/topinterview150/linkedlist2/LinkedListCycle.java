@@ -1,5 +1,7 @@
 package com.dsa.topinterview150.linkedlist2;
 
+import com.dsa.topinterview150.linkedlist.ListNode;
+
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
