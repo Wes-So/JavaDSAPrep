@@ -22,10 +22,17 @@ public class LinkedListCycle {
     }
 
     public static boolean hasCycle(ListNode head) {
-        List<Integer> values = new ArrayList<>();
+        /*
+            1. Keep all nodes in a list that we've passed.
+            2. Every node we meet, check if next value is in the list.
+            3. If yes return true;
+            4. O(N) as we need to pass everything if there's no cycle.
+            5. There's a faster algorithm used.  Review that next time.
+         */
+        List<ListNode> values = new ArrayList<>();
         while(head!=null){
-            if(values.contains(head.val)) return true;
-            values.add(head.val);
+            if(values.contains(head)) return true;
+            values.add(head);
             head = head.next;
         }
 
