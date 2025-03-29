@@ -1,4 +1,4 @@
-package com.dsa.topinterview150.linkedlist;
+package com.dsa.grind75;
 
 public class ListNode {
     public int val;

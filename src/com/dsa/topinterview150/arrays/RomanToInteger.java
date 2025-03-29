@@ -1,6 +1,6 @@
 package com.dsa.topinterview150.arrays;
 
-import org.jetbrains.annotations.NotNull;
+
 
 public class RomanToInteger {
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class RomanToInteger {
 
     }
 
-    public static int romanToInt(@NotNull String s) {
+    public static int romanToInt(String s) {
         int value = 0;
 
         for (int i = s.length() -1; i > -1; i--) {
